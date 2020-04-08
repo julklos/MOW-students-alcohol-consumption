@@ -42,22 +42,14 @@ Joanna Kiesiak, Julia Kłos\\
 \maketitle
 
 \section{Opis projektu}
-Celem projektu jest zbadanie własności algorytmu lasu losowego. Dodatkowo należy porównać wyniki klasyfikacji z~wynikami uzyskanymi przy użyciu naiwnego klasyfikatora bayesowskiego.
-
-Jednym z łatwiejszych do zrozumienia, wizualizacji oraz interpretacji algorytmów jest drzewo decyzyjne. Umożliwia ono wykorzystanie zmiennych zarówno numerycznych, jak i
-kategorycznych, a zastosowanie znajduje w zadaniach zarówno klasyfikacyjnych, jak i regresyjnych. Niestety, charakteryzuje je również kilka istotnych wad, takich jak: niestabilność (kiedy niewielka zmiana w danych może doprowadzić do zupełnie innego wyniku
-końcowego) oraz nadmierne dopasowanie.
-
-Rozwiązaniem tych problemów są procedury agregujące rodziny klasyfikatorów, np. lasy losowe.
-Działanie jego polega na klasyfikacji za pomocą grupy drzew decyzyjnych. Każde z~drzew wskazuje
-klasę odpowiednią dla danego przypadku, a~wynik końcowy jest efektem głosowania większościowego.
-
-Algorytm lasu losowego zostanie zbadany i wykorzystany do przewidywania spożycia alkoholu przez studentów. Badana grupa zostanie podzielona według częstotliwości spożycia alkoholu (w skali 1--5, gdzie 1 to bardzo rzadko, a 5 bardzo często). Oddzielone zostało spożywanie alkoholu w trakcie tygodnia od weekendów.
+\input{tex/wstep}
 \section{Opis algorytmów}
 \subsection{Drzewo}
+\input{tex/drzewo}
 \subsection{Las losowy}
+\input{tex/las_losowy}
 \subsection{Naiwny klasyfikator bayesowski}
-
+\input{tex/bayes}
 \section{Plan badań}
 \subsection{Charakterystyka zbioru danych}
 \todo{+ewentualnych czynności związanych z przygotowaniem danych}

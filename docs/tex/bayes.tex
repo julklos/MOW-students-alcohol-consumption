@@ -1,0 +1,20 @@
+Naiwny klasyfikator bayesowski jest modelem probabilistycznym opartym na klasycznym twierdzeniu Bayesa \cite{lewis1998naive}. Opisuje ono
+relację pomiędzy prawdopodobieństwem warunkowym pewnego zdarzenia oraz jego prawdopodobieństwem bezwarunkowym:
+\begin{equation}
+\label{eq:bayes}
+    P(A|B) = \frac{P(A)\times P(B|A)}{P(B)}.
+\end{equation}
+Wykorzystując wzór (\ref{eq:bayes}), można znaleźć prawdopodobieństwo zdarzenia \mathbf{A}, zakładając, że zdarzenie \mathbf{B} wystąpiło. Zdarzenie \mathbf{B} można potraktować jako dowód, a zdarzenie \mathbf{A} jako hipotezę.
+
+Klasyfikator bayesowski przypisuje najbardziej prawdopodobną klasę $c_k$ dla danego przykładu na podstawie jej wektora atrybutów  $\pmb{x} = [a_1=v_1, a_2=v2,..., a_n = v_n]$ \cite{lewis1998naive}:
+\begin{equation}
+    \label{eq:bayes_class}
+     P(c_k|\pmb{x}) = \frac{P(c_k)\times P(\pmb{x}|c_k)}{P(\pmb{x})}.
+\end{equation}
+
+Ten klasyfikator silnie korzysta z założenia o niezależności. Co oznacza, że prawdopodobieństwo żadnego z atrybutów nie wpływa na prawdopodobieństwo innego z atrybutów \cite{mukherjee2012intrusion}:
+\begin{equation}
+   P(a_1=v_1, a_2=v2,..., a_n = v_n|c_k) = \prod_{i=1}^{n}{P(a_i=v_i|c_k)}}
+\end{equation}
+
+Algorytm charakteryzuje prostota, łatwość implementacji i~niska złożoność obliczeniowa. Jest odporny na dopasowanie i wydaje się być najbardziej skuteczny, przy zbiorach danych o dużej liczbie atrybutów.

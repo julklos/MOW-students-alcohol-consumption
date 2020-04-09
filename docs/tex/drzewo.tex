@@ -1,1 +1,15 @@
-\todo{opis drzew decyzyjnych}
+Modele drzew mogą zostać wykorzystane do zagadnień klasyfikacyjnych jak i regresyjnych.
+Rekurencyjna struktura drzewa składa się z:
+\begin{itemize}
+    \item węzłów, które reprezentują testy na wartościach atrybutu;
+    \item gałęzi, oznaczających możliwe wyniki testu dla danego węzła;
+    \item liści, czyli decyzji o klasyfikacji obiektu.
+\end{itemize}
+Proces predykcji polega na przejściu od pierwszego węzła do pewnego liścia, ścieżką wyznaczaną przez gałęzie odpowiadające wartościom atrybutów danego przykładu.
+
+Budowa drzewa wiążę się z wieloma ważnymi decyzjami, m.in. : czy utworzyć węzeł czy liść,  jakiego podziału dokonać w węźle, którą klasę będzie reprezentował dany liść. Rozbudowa drzewa zostaje wstrzymana zazwyczaj wtedy, gdy osiągnie ono maksymalną (ustaloną wcześniej) głębokość, bądź gdy zbiór obiektów przeznaczonych do budowania modelu jest już pusty lub jednorodny. Wyznaczanie etykiety danego liścia odbywa się zazwyczaj metodą większościową, tzn.  dla danego zbioru obiektów wybierana jest klasa
+decyzyjna najliczniej reprezentowana w tym zbiorze
+
+Spośród możliwych modeli, preferowane są drzewa o prostszej budowie, dlatego dąży się do jak najszybszego uzyskania jednorodnych klas. Oznacza to, że podział aktualnego zbioru przykładów ma dać jak największy przyrost informacji, uzyskać najmniejszą nieczystość
+klas po podziale. 
+\todo{entropia, gini, przycinanie... ogólne cechy drzew}

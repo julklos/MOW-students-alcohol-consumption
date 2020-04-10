@@ -11,5 +11,34 @@ Budowa drzewa wiążę się z wieloma ważnymi decyzjami, m.in. : czy utworzyć 
 decyzyjna najliczniej reprezentowana w tym zbiorze
 
 Spośród możliwych modeli, preferowane są drzewa o prostszej budowie, dlatego dąży się do jak najszybszego uzyskania jednorodnych klas. Oznacza to, że podział aktualnego zbioru przykładów ma dać jak największy przyrost informacji, uzyskać najmniejszą nieczystość
-klas po podziale. 
-\todo{entropia, gini, przycinanie... ogólne cechy drzew}
+klas po podziale. Do wyboru najlepszego podziału można wykorzystać m.in. indeks Giniego $GI$ bądź klasyczną, teorio-informacyjną entropię $E$. Wybierany jest przedział, który maksymalizuję redukcję nieczystości, czyli:
+\begin{equation}
+    \Delta E(c|t) = E(c)-E(c|t)
+\end{equation}
+\begin{equation}
+ \Delta GI(c|t) = GI(c)-GI(c|t)      
+ \end{equation}
+gdzie 
+entropia:
+\begin{equation}
+    E(c) = \sum_{d\in C} - P(c=d)\log P(c=d)
+\end{equation}
+a entropia warunkowa:
+\begin{equation}
+    E(c|t) = \sum_{r\in R} \frac{|T_{t=r}|}{|T|}E_{t=r}(c)
+\end{equation}
+A indeks Giniego:
+halo
+\begin{equation}
+    GI(c) = 1- \sum_{d\in C}P(c=d)^2
+\end{equation}
+a warunkowy indeks Giniego:
+\begin{equation}
+      GI(c|t) = \sum_{r\in R} \frac{|T_{t=r}|}{|T|}GI_{t=r}(c)
+\end{equation}
+\todo{opisać wzory}
+
+Niejednokrotnie budowa drzewa nie kończy procesu tworzenia modelu. Jak już zostało wspomniane, preferowane są prostsze drzewa. W celu ograniczenia ryzyka nadmiernego dopasowania stosuje się tzw. przycinanie drzewa, czyli zastąpienia wybranych węzłów przez liście już po zakończeniu budowania drzewa. Zastosowanie tego mechanizmu po wstępnym skończeniu budowy pozwala ocenić wpływ danych węzłów na jakość predykcji. Może się okazać, że poddrzewo wychodzące z danego węzła nie zmniejsza znacząco błędu rzeczywistego, a jedynie zwiększa poziom skomplikowania modelu. Wśród metod przycinania drzew znajduja się m.in. REP (Reduced Error Pruning), MEP (Minimum Error Pruning) oraz CCP (Cost-Complexity Pruning).
+\todo{Czy więcej o tym pisać? nie ma to większego znaczenia dla lasu}
+
+Podsumowując drzewa decyzyjne są dość prostymi i czytelnymi dla człowieka modelami, które zazwyczaj charakteryzują się dobrą jakością predykcji. Niestety są podatne na nadmierne dopasowanie, chociaż można temu przeciwdziałać, co może być jednak dość złożonym i kosztownym procesem.

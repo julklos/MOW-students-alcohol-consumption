@@ -1,9 +1,15 @@
-\todo{+ewentualnych czynności związanych z przygotowaniem danych}
 Na dane składają się wyniki ankiet zebranych pośród uczestników lekcji matematyki (395 osób) i hiszpańskiego (649 osób). Część osób (392) uzupełniło ankiety w obu grupach, dlatego należy je rozpoznać na podstawie niektórych atrybutów (informacji o szkole, miejscu zamieszkania, płci, danych o rodzinie) i usunąć ze zbioru danych. W ten sposób uzyskano 622 unikatowych wyników ankiety. W danych nie zauważono brakujących wartości.
 
-Dane składają się z 33 atrybutów (zestawienie w tab. \ref{tab:attributes}), z czego 2 dotyczą spożycia alkoholu, czyli klas, które mają zostać przewidziane przez algorytmy. 
-\todo{skończyć}
-\begin{table}[h]
+Dane składają się z 33 atrybutów (zestawienie w tab. \ref{tab:attributes}), z czego 2 dotyczą spożycia alkoholu, czyli klas, które mają zostać przewidziane przez algorytmy. Na rys. \ref{fig:classes} przedstawiony został rozkład klas dla obu atrybutów dotyczących spożycia alkoholu. Można zauważyć, że zbiór, zwłaszcza dla spożycia alkoholu w weekend charakteryzuje silne niezbalansowanie klas. \todo{skończyć}
+
+\begin{figure}[h]
+
+ \centering 
+ \includegraphics[scale=0.30]{tex/alc.pdf}
+\caption{Rozkład klas.}
+ \label{fig:classes}
+\end{figure}
+\begin{table}[h!]
 \centering
 \caption{Atrybuty analizowanych danych}
 \label{tab:attributes}
@@ -45,3 +51,4 @@ G2  &      &  ocena za 2.~semestr  \\ \hline
 G3   &      &  ocena końcowa  \\ \hline
 \end{tabular}
 \end{table}
+\FloatBarrier

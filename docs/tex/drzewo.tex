@@ -11,32 +11,34 @@ Budowa drzewa wiążę się z wieloma ważnymi decyzjami, m.in. : czy utworzyć 
 decyzyjna najliczniej reprezentowana w tym zbiorze
 
 Spośród możliwych modeli, preferowane są drzewa o prostszej budowie, dlatego dąży się do jak najszybszego uzyskania jednorodnych klas. Oznacza to, że podział aktualnego zbioru przykładów ma dać jak największy przyrost informacji, uzyskać najmniejszą nieczystość
-klas po podziale. Do wyboru najlepszego podziału można wykorzystać m.in. indeks Giniego $GI$ bądź klasyczną, teorio-informacyjną entropię $E$. Wybierany jest przedział, który maksymalizuję redukcję nieczystości, czyli:
+klas po podziale. Do wyboru najlepszego podziału można wykorzystać m.in. indeks Giniego $GI$ bądź klasyczną, teorio-informacyjną entropię $E$. Wybierany jest podział $t$, który maksymalizuję redukcję nieczystości, czyli
+różnicę nieczystości przed podziałem i po podziale:
 \begin{equation}
-    \Delta E(c|t) = E(c)-E(c|t)
+    \Delta E(c|t) = E(c)-E(c|t),
 \end{equation}
 \begin{equation}
- \Delta GI(c|t) = GI(c)-GI(c|t)      
+ \Delta GI(c|t) = GI(c)-GI(c|t).      
  \end{equation}
-gdzie 
-entropia:
+Definiuję się to jako różnicę między bezwarunkową i warunkową entropią (lub
+analogicznie dla indeksu Giniego).
+Entropia bezwarunkowa opisywana jest wzorem:
 \begin{equation}
     E(c) = \sum_{d\in C} - P(c=d)\log P(c=d)
-\end{equation}
-a entropia warunkowa:
+\end{equation},
+gdzie $C$ oznacza zbiór możliwych klas.
+a entropia warunkowa, w zależności od podziału $t$ dla pewnego zbioru trenującego $T$ i wszystkich wyników tego podziału $R$:
 \begin{equation}
     E(c|t) = \sum_{r\in R} \frac{|T_{t=r}|}{|T|}E_{t=r}(c)
 \end{equation}
-A indeks Giniego:
-halo
+Podobnie indeks Giniego definiuje się jako:
 \begin{equation}
     GI(c) = 1- \sum_{d\in C}P(c=d)^2
 \end{equation}
 a warunkowy indeks Giniego:
 \begin{equation}
-      GI(c|t) = \sum_{r\in R} \frac{|T_{t=r}|}{|T|}GI_{t=r}(c)
+      GI(c|t) = \sum_{r\in R} \frac{|T_{t=r}|}{|T|}GI_{t=r}(c).
 \end{equation}
-\todo{opisać wzory}
+\todo{Czy to jest sensownie opisane?}
 
 Niejednokrotnie budowa drzewa nie kończy procesu tworzenia modelu. Jak już zostało wspomniane, preferowane są prostsze drzewa. W celu ograniczenia ryzyka nadmiernego dopasowania stosuje się tzw. przycinanie drzewa, czyli zastąpienia wybranych węzłów przez liście już po zakończeniu budowania drzewa. Zastosowanie tego mechanizmu po wstępnym skończeniu budowy pozwala ocenić wpływ danych węzłów na jakość predykcji. Może się okazać, że poddrzewo wychodzące z danego węzła nie zmniejsza znacząco błędu rzeczywistego, a jedynie zwiększa poziom skomplikowania modelu. Wśród metod przycinania drzew znajduja się m.in. REP (Reduced Error Pruning), MEP (Minimum Error Pruning) oraz CCP (Cost-Complexity Pruning).
 \todo{Czy więcej o tym pisać? nie ma to większego znaczenia dla lasu}

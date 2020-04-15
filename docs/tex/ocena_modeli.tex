@@ -1,4 +1,4 @@
-Część danych (ok. 10-20\%) zostanie wydzielona jako zbiór testujący, pozostała część będzie stanowiła zbiór uczący. Pozwoli to ocenić, jak dobrze model radzi sobie z uogólnianiem pojęcia.
+Część danych (ok. 10-20\%) zostanie wydzielona jako zbiór testujący, pozostała część będzie stanowiła zbiór uczący. Pozwoli to ocenić, jak dobrze model radzi sobie z uogólnianiem pojęcia. 
 
 Ocena modelu predykcyjnego odbędzie się na podstawie poniższych parametrów:
 \begin{itemize}
@@ -10,7 +10,7 @@ Ocena modelu predykcyjnego odbędzie się na podstawie poniższych parametrów:
     \begin{equation}
     RMSE = \sqrt{(\frac{1}{n})\sum_{i=1}^{n}(Y_{i} - y_{i})^{2}}
     \end{equation}
-    \item sprawdzenie confusion matrix - czyli informacja o klasyfikacji próbek fałszywie pozytywnych, prawdziwie fałszywych itd;
+    \item sprawdzenie confusion matrix - czyli informacja o klasyfikacji próbek fałszywie i prawdziwie sklasyfikowanych dla poszczególnych klas, co pozwoli ocenić jak model radzi sobie z niezbalansowanymi klasami;
     \item sprawdzenie dokładności modelu przez użycie walidacji krzyżowej;
     \item w modelu zastosujemy bootstrapping, czyli K-krotne użycie pierwotnego zbioru danych do uczenia modelu, w tym wypadku zbadamy zagregowany błąd predykowany w agregacie do zagregowanego błędu rzeczywistego;
 \end{itemize}

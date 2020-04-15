@@ -1,11 +1,11 @@
-Działanie lasów losowych polega na klasyfikacji za pomocą grupy drzew decyzyjnych. Parametrem, który odpowiada za finalną decyzję jest średnia, gdy przewidywana jest wartość liczbowa lub wynik głosowania dla analizowanej przynależności do klasy.
+Działanie lasów losowych polega na klasyfikacji za pomocą grupy drzew decyzyjnych. Parametrem, który odpowiada za finalną decyzję jest średnia, gdy przewidywana jest wartość liczbowa lub wynik głosowania dla analizowanej przynależności do klasy \cite{BiauGerard2016Arfg}.
 
-Każde z drzew w lasie losowym jest tworzone w oparciu o próbę, powstałą przez wylosowanie N obiektów ze zbioru uczącego. W każdym węźle danego drzewa podział jest dokonywany na podstawie części losowo wybranych cech, których liczba jest zazwyczaj mniejsza od liczby wszystkich cech. Ma to pozwolić na uzyskanie jak największej niezależności poszczególnych węzłów, czyli zmniejszenie wariancji modelu. 
-Błąd klasyfikacji może być szacowany na podstawie obiektów nie włączonych do próby.
+Każde z drzew w lasie losowym jest tworzone w oparciu o próbę, powstałą przez wylosowanie N obiektów ze zbioru uczącego. W każdym węźle danego drzewa podział jest dokonywany na podstawie części losowo wybranych cech, których liczba jest zazwyczaj mniejsza od liczby wszystkich cech \cite{SuthaharanShan2015MLMa}. Ma to pozwolić na uzyskanie jak największej niezależności poszczególnych węzłów, czyli zmniejszenie wariancji model \cite{BiauGerard2016Arfg}.
+Błąd klasyfikacji może być szacowany na podstawie obiektów nie włączonych do próby \cite{randomBerkeley}.
 
 Wykorzystanie lasu losowego ma zmniejszyć błąd klasyfikacji, poprzez zmniejszenie wpływu pojedynczego, nieidealnego klasyfikatora na końcową decyzję, zachowując jednocześnie jego zalety. Wynika
 to z założenia, że większość drzew zapewni dobre przewidywanie dla większości danych, a każde
-drzewo myli się w innym miejscu. Często nie stosuje się operacji przycinania drzewa, która ma zmniejszyć podatność na dopasowanie, ponieważ ma temu przeciwdziałać struktura lasu losowego.  Ten algorytm jest wykorzystywany do analiz na dużych zbiorach danych,
+drzewo myli się w innym miejscu \cite{randomTowardsData}. Często nie stosuje się operacji przycinania drzewa, która ma zmniejszyć podatność na dopasowanie, ponieważ ma temu przeciwdziałać struktura lasu losowego.  Ten algorytm jest wykorzystywany do analiz na dużych zbiorach danych,
 a także brakujących.
 
 

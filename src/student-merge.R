@@ -1,3 +1,4 @@
+library(tidyverse)
 library(tidyr)
 library(ggplot2)
 library(Hmisc)
@@ -30,4 +31,56 @@ write.csv(students,'students.csv')
 rm(list=ls())
 dev.off()
 graphics.off()
+
+
+
+# prepocessing the data
+students[students$Walc == 1,]$Walc = "bardzo_malo"
+students[students$Walc == 2,]$Walc = "malo"
+students[students$Walc == 3,]$Walc = "umiarkowanie"
+students[students$Walc == 4,]$Walc = "duzo"
+students[students$Walc == 5,]$Walc = "bardzo_duzo"
+students$Walc = as.factor(students$Walc)
+
+students[students$Dalc == 1,]$Dalc = "bardzo_malo"
+students[students$Dalc == 2,]$Dalc = "malo"
+students[students$Dalc == 3,]$Dalc = "umiarkowanie"
+students[students$Dalc == 4,]$Dalc = "duzo"
+students[students$Dalc == 5,]$Dalc = "bardzo_duzo"
+students$Dalc = as.factor(students$Dalc)
+
+# 80% train 20% test
+sample <- sample.int(n = nrow(students), size = floor(.8*nrow(students)), replace = F)
+train <- students[sample, ]
+test  <- students[-sample, ]
+
+
+# list -> dataframes
+typeof(train)
+typeof(test)
+
+glimpse(train)
+glimpse(test)
+names(train)
+# analysis
+
+str(train)
+# basic approach
+
+set.seed(1234)
+# training
+
+#ntree = 10 OOB = 58.93%
+#ntree = 100 OOB = 55.77%
+#ntree = 1000 OOB = 51.23%
+#ntree = 10000 OOB = 51.04%
+
+model = randomForest(Walc ~ . , data = train, ntree = 10000 )
+model
+oob.error.data = data.frame()
+predictForest <- predict(stevensForest, newdata = Test)
+
+https://stackoverflow.com/questions/46816174/confusion-matrix-for-random-forest-in-r-caret
+
+
 

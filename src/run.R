@@ -5,11 +5,8 @@ if (! "randomForest" %in% row.names(installed.packages()))
   install.packages("randomForest")
 library(e1071)
 library(randomForest)
+library(dplyr)
 
-students<- read.csv("../data/students.csv",header=TRUE)
+setwd("C:/Users/Asia/Documents/MOW_2/MOW-students-alcohol-consumption/data")
+students<- read.csv("students.csv",header=TRUE)
 students$X <- NULL
-
-sample <- sample.int(n = nrow(students), size = floor(.8*nrow(students)), replace = F)
-train <- students[sample, ]
-test  <- students[-sample, ]
-

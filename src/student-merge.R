@@ -28,9 +28,9 @@ legend("topright",
        bty = "n")
 
 write.csv(students,'students.csv')
-rm(list=ls())
-dev.off()
-graphics.off()
+# rm(list=ls())
+#dev.off()
+#graphics.off()
 
 
 
@@ -77,10 +77,53 @@ set.seed(1234)
 
 model = randomForest(Walc ~ . , data = train, ntree = 10000 )
 model
-oob.error.data = data.frame()
-predictForest <- predict(stevensForest, newdata = Test)
+plot(model)
 
-https://stackoverflow.com/questions/46816174/confusion-matrix-for-random-forest-in-r-caret
+# http://biecek.pl/PASIK/uploads/MartaTyce.pdf
+importance(model)
+varImpPlot(model)
 
+predict = predict(model, test)
+
+tab <- table(predict,test$Walc)
+tab
+sum(tab)-sum(diag(tab))
+tab_2 <- table(predict,test$Dalc)
+tab_2
+sum(tab_2)-sum(diag(tab_2))
+
+
+# classwt 
+
+iters = c( 10, 100, 1000, 10000)
+#
+for(i in iters){
+  nam <- paste("model_withoutBo_def_", i, sep = "")
+  assign(nam, randomForest(Walc ~ . , data = train, ntree = i, replace = FALSE ) )
+  
+  name <- paste("importance_model_withoutBo", i, sep = "")
+  assign(name, importance(randomForest(Walc ~ . , data = train, ntree = i )) )
+  
+  na <- paste("varImpPlot_model_withoutBo", i, sep = "")
+  assign(na, varImpPlot(randomForest(Walc ~ . , data = train, ntree = i )) )
+  
+  
+}
+nam <- paste("A", i, sep = "")
+assign(nam, rnorm(3)+d)
+
+#https://stackoverflow.com/questions/46816174/confusion-matrix-for-random-forest-in-r-caret
+
+model_1 = randomForest(Walc ~ . , data = train, ntree = 1 ) 
+importance(model_1)
+varImpPlot(nam) 
+  name <- paste("importance_model", i, sep = "")
+  assign(name,  )
+  
+  na <- paste("varImpPlot_model", i, sep = "")
+  assign(na, varImpPlot(nam) )
+  
+  
+}
 
 

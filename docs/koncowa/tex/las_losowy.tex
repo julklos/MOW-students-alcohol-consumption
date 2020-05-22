@@ -1,0 +1,22 @@
+Działanie lasów losowych polega na klasyfikacji za pomocą grupy drzew decyzyjnych. Parametrem, który odpowiada za finalną decyzję jest średnia, gdy przewidywana jest wartość liczbowa lub wynik głosowania dla analizowanej przynależności do klasy. Każde z drzew w lasie losowym jest tworzone w oparciu o próbę, powstałą przez wylosowanie N obiektów ze zbioru uczącego. W każdym węźle danego drzewa podział jest dokonywany na podstawie części losowo wybranych cech, których liczba jest zazwyczaj mniejsza od liczby wszystkich cech. Ma to pozwolić na uzyskanie jak największej niezależności poszczególnych węzłów, czyli zmniejszenie wariancji modelu.
+Błąd klasyfikacji może być szacowany na podstawie obiektów nie włączonych do próby.
+
+Implementacja algorytmu lasu losowego została użyta przez pakiet RandomForest. Przy budowaniu lasu losowego wzięto pod uwagę parametry takie jak:
+
+-ilość drzew (ntree)
+
+-głębokość pojedyńczego drzewa (maxnodes)
+
+-waga klas (classwt)
+
+-losowanie ze zwracaniem (replace)
+
+-ilość atrybutów rozpatrywana przy tworzeniu węzła (mtry)
+
+
+Na początku zbadano 
+
+Jako pierwszą część eksperymentu przeprowadzono badanie wpływu ilości drzew, składających się na jakość klasyfikacji. W algorytmie wykorzystano las, który składał się z 1, 10, 100, 1000 oraz 10 000 drzew.
+
+\todo{tabele czy co wrzucać?.}
+

@@ -64,7 +64,6 @@ glimpse(test)
 names(train)
 # analysis
 
-str(train)
 # basic approach
 
 set.seed(1234)
@@ -75,37 +74,35 @@ set.seed(1234)
 #ntree = 1000 OOB = 51.23%
 #ntree = 10000 OOB = 51.04%
 
-model = randomForest(Walc ~ . , data = train, ntree = 10000 )
-model
-plot(model)
-
-# http://biecek.pl/PASIK/uploads/MartaTyce.pdf
-importance(model)
-varImpPlot(model)
-
-predict = predict(model, test)
-
-tab <- table(predict,test$Walc)
-tab
-sum(tab)-sum(diag(tab))
-tab_2 <- table(predict,test$Dalc)
-tab_2
-sum(tab_2)-sum(diag(tab_2))
-
 
 # classwt 
+names(train)
+myData = select(train, -Dalc)
 
-iters = c( 10, 100, 1000, 10000)
-#
+iters = c( 10, 20, 30,40,100, 1000, 10000)
 for(i in iters){
-  nam <- paste("model_withoutBo_def_", i, sep = "")
-  assign(nam, randomForest(Walc ~ . , data = train, ntree = i, replace = FALSE ) )
+  nam <- paste("model_replaceTRUE_maxnodes60_", i, sep = "")
+  assign(nam, randomForest(Walc ~ . , data = myData, ntree = i, replace = TRUE, maxnodes = 60 ) )
   
-  name <- paste("importance_model_withoutBo", i, sep = "")
-  assign(name, importance(randomForest(Walc ~ . , data = train, ntree = i )) )
+  name <- paste("model_replaceTRUE_maxnodes60_", i, sep = "")
+  assign(name, importance(randomForest(Walc ~ . , data = myData, ntree = i, replace = TRUE, maxnodes = 60 )) )
   
-  na <- paste("varImpPlot_model_withoutBo", i, sep = "")
-  assign(na, varImpPlot(randomForest(Walc ~ . , data = train, ntree = i )) )
+  na <- paste("model_replaceTRUE_maxnodes60_", i, sep = "")
+  assign(na, varImpPlot(randomForest(Walc ~ . , data = myData, ntree = i, replace = TRUE, maxnodes = 60 )) )
+  
+  
+}
+
+
+for(i in iters){
+  nam <- paste("model_replaceTRUE_maxnodes6_", i, sep = "")
+  assign(nam, randomForest(Walc ~ . , data = myData, ntree = i, replace = TRUE, maxnodes = 60 ) )
+  
+  name <- paste("model_replaceTRUE_maxnodes6_", i, sep = "")
+  assign(name, importance(randomForest(Walc ~ . , data = myData, ntree = i, replace = TRUE, maxnodes = 60 )) )
+  
+  na <- paste("model_replaceTRUE_maxnodes6_", i, sep = "")
+  assign(na, varImpPlot(randomForest(Walc ~ . , data = myData, ntree = i, replace = TRUE, maxnodes = 60 )) )
   
   
 }

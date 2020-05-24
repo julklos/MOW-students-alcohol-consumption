@@ -3,8 +3,8 @@ library(tidyr)
 library(ggplot2)
 library(Hmisc)
 
-mat_students <- read.csv("../data/student-mat.csv",header=TRUE)
-por_students <- read.csv("../data/student-por.csv",header=TRUE)
+mat_students <- read.csv("./data/student-mat.csv",header=TRUE)
+por_students <- read.csv("./data/student-por.csv",header=TRUE)
 students = rbind(mat_students, por_students)
 
 cls = c("school","sex","age","address","famsize","Pstatus","Medu","Fedu","Mjob","Fjob","reason","nursery","internet")

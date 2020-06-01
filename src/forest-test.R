@@ -31,20 +31,20 @@ numTreesDf <- data.frame(numtrees=integer(),
 mtryAr = c(1:30)
 numTreesAr = c(1, 10, 30, 50, 100, 300, 500, 1000, 3000)
 maxNodseAr = c(1, 5, 10, 25, 30, 60, 100)
-iters = 20
+iters = 3
 constmMtry = 9
 constMaxNodes = 60
 constNtrees = 300
 for (att in mtryAr){
-  ## opcja jeden, ewentualnie CV/ OBB- to bardziej do rysunku prowadzi
+  ## opcja jeden, ewentualnie CV/ OBB- to bardziej niżej do rysunku prowadzi
   for(i in 1:iters){
     sample <- sample.int(n = nrow(students), size = floor(.8*nrow(students)), replace = F)
     train <- students[sample, ]
     test  <- students[-sample, ]
 
-    model <- randomForest(Dalc ~ . , data = train, mtry = att, ntree =constNtrees, replace = TRUE, maxnodes = constMaxNodes ) 
+    model <- randomForest(Walc ~ . , data = train, mtry = att, ntree =constNtrees, replace = TRUE, maxnodes = constMaxNodes ) 
     
-    newValues <- data.frame(att, err(train$Dalc, predict(model, train)), err(test$Dalc, predict(model, test)) )      
+    newValues <- data.frame(att, err(train$Walc, predict(model, train)), err(test$Walc, predict(model, test)) )      
     names(newValues) <- c("mtry", "err", "errTest")  
     mtryDf <- rbind(mtryDf, newValues)  
     
@@ -52,3 +52,4 @@ for (att in mtryAr){
 }
 boxplot(err~mtry, data=mtryDf,xlab="mytry", ylab="błąd")
 boxplot(errTest~mtry, data=mtryDf,xlab="mytry", ylab="błąd")
+

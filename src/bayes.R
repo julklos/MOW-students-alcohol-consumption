@@ -14,7 +14,7 @@ library(tidyr)
 library(caret)
 err <- function(y.true, y.pred) { sum(y.pred!=y.true)/length(y.true) }
 
-students<- read.csv("./data/students.csv",header=TRUE)
+students<- read.csv("../data/students.csv",header=TRUE)
 students$X <- NULL
 students$Walc <- as.factor(students$Walc)
 students$Dalc <- as.factor(students$Dalc)

@@ -6,9 +6,11 @@ W ramach projektu przeprowadzine zostały eksperymenty:
     \item ilości zmiennych losowanych w każdym węźle - weryfikacja tezy, że najkorzystniejsze jest wykorzystywanie $\sqrt {ilosc atrybutow}$;
     \item maksymalna głębokości pojedynczego drzewa;
     \item wpływ losowania przypadków do modelu ze zwracaniem i bez;
-    \item badanie predykcji dla danych z niezbalansowanymi klasami;
-        \item wprowadzenie wag danych klas\footnote[2]{opcjonalne};
-        \item dla naiwnego klasyfikatora bayesowskiego spawdzony zostanie wpływ wygladzenia Laplace'a;
+    
+        % \item badanie predykcji dla danych z niezbalansowanymi klasami;
+    
+    \item wprowadzenie wag danych klas\footnote[1]{opcjonalne};
+    \item dla naiwnego klasyfikatora bayesowskiego spawdzony zostanie wpływ wygladzenia Laplace'a;
         
 \end{itemize}
 
@@ -16,15 +18,19 @@ Część danych (ok. 10-20\%) zostanie wydzielona jako zbiór testujący, pozost
 
 Ocena modelu predykcyjnego odbędzie się na podstawie poniższych parametrów:
 \begin{itemize}
-    \item suma kwadratów różnicy wartości predykcyjnej od wartości rzeczywistej
-    \begin{equation}
-    MSE = {\frac{1}{n}\sum_{i=1}^{n}(Y_{i} - y_{i})^{2}}
-    \end{equation}
-    \item pierwiastek sumy kwadratów różnicy wartości predykcyjnej od wartości rzeczywistej
-    \begin{equation}
-    RMSE = \sqrt{(\frac{1}{n})\sum_{i=1}^{n}(Y_{i} - y_{i})^{2}}
-    \end{equation}
+        % \item suma kwadratów różnicy wartości predykcyjnej od wartości rzeczywistej
+        % \begin{equation}
+        % MSE = {\frac{1}{n}\sum_{i=1}^{n}(Y_{i} - y_{i})^{2}}
+        % \end{equation}
+        
+        % \item pierwiastek sumy kwadratów różnicy wartości predykcyjnej od wartości rzeczywistej
+        % \begin{equation}
+        % RMSE = \sqrt{(\frac{1}{n})\sum_{i=1}^{n}(Y_{i} - y_{i})^{2}}
+        % \end{equation}
+ 
+    \item sprawdzenie dokładności modelu - czyli liczba poprawnie predykowanych próbek do wszystkich próbek;    
     \item sprawdzenie confusion matrix - czyli informacja o klasyfikacji próbek fałszywie i prawdziwie sklasyfikowanych dla poszczególnych klas, co pozwoli ocenić jak model radzi sobie z niezbalansowanymi klasami;
+
     \item sprawdzenie dokładności modelu przez użycie walidacji krzyżowej;
     \item w modelu zastosujemy bootstrapping, czyli K-krotne użycie pierwotnego zbioru danych do uczenia modelu, w tym wypadku zbadamy zagregowany błąd predykowany w agregacie do zagregowanego błędu rzeczywistego;
 \end{itemize}

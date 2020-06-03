@@ -1,0 +1,13 @@
+\todo{blablabla.}
+
+Naiwny klasyfikator bayesowski jest modelem probabilistycznym opartym na klasycznym twierdzeniu Bayesa. Opisuje ono relację pomiędzy prawdopodobieństwem warunkowym pewnego zdarzenia oraz jego prawdopodobieństwem bezwarunkowym:
+\begin{equation}
+\label{eq:bayes}
+    P(A|B) = \frac{P(A)\times P(B|A)}{P(B)}.
+\end{equation}
+
+%  TO NIE CHCE DZIALAĆ -.-
+% Wykorzystując wzór (\ref{eq:bayes}), można znaleźć prawdopodobieństwo zdarzenia \mathbf{A}, zakładając, że zdarzenie \mathbf{B} wystąpiło. Zdarzenie \mathbf{B} można potraktować jako dowód, a zdarzenie \mathbf{A} jako hipotezę.
+
+
+Implementacja algorytmu klasyfikatora bayesowskiego została wykorzystana przez pakiet e1071. Przy pierwotnym budowaniu modelu wykorzystano funkcję tune do przybliżenia jak najlepszych parametrów modelowi. Następnie przestestowano hipotezę, która miała na celu sprawdzenie wpływu wygładzenia Laplace'a.

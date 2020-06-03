@@ -50,10 +50,31 @@ control <- trainControl(## 10-fold CV
   method = "cv",
   number = 10)
 #control <- trainControl(method="repeatedcv", number=10, repeats=3)
-tunegrid <- expand.grid(mtry=c(1:10), ntree=c(10,50,100,300,500), maxnodes=c(3,10,20,50))
+tunegrid <- expand.grid(mtry=c(1:10), ntree=c(10,50,100,300,500), maxnodes=c(3,10,20,50, 100, 300))
 set.seed(seed)
 custom <- train(Dalc~., data=train, method=customRF, metric=metric, tuneGrid=tunegrid, trControl=control)
 summary(custom)
 plot(custom)
+custom$bestTune
+ #     mtry ntree maxnodes
+#221    8    50      100
+
+# train model
+custom_W <- train(Walc~., data=train, method=customRF, metric=metric, tuneGrid=tunegrid, trControl=control)
+summary(custom_W)
+plot(custom_W)
+
+
+############### replace 
+
+rf_Dalc = randomForest(Dalc~., data=train, replace = ,mtry = ,  ntree=  , maxnodes = )
+  
+prediction <-predict(rf_Dalc, test)
+confusionMatrix(prediction, test$Dalc)
+
+
+
+
+
 
 

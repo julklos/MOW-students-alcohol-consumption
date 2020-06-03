@@ -11,3 +11,62 @@ Naiwny klasyfikator bayesowski jest modelem probabilistycznym opartym na klasycz
 
 
 Implementacja algorytmu klasyfikatora bayesowskiego została wykorzystana przez pakiet e1071. Przy pierwotnym budowaniu modelu wykorzystano funkcję tune do przybliżenia jak najlepszych parametrów modelowi. Następnie przestestowano hipotezę, która miała na celu sprawdzenie wpływu wygładzenia Laplace'a.
+
+\begin{table}[h]
+\caption{Wyniki dla atrybutu \textbf{Dalc} dla naiwnego klasyfikatora bayesowskiego}
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multirow{}{}{\textbf{X}} & \multicolumn{5}{c|}{\textbf{Y}}                                & \multirow{}{}{\textbf{błąd klasy}} \\ \cline{2-6}
+                            & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                      \\ \hline
+\textbf{1}                  & 343        & 14         & 5          & 0          & 2          & 0.05769231                           \\ \hline
+\textbf{2}                  & 68         & 19         & 6          & 0          & 0          & 0.79569892                           \\ \hline
+\textbf{3}                  & 22         & 10         & 3          & 0          & 2          & 0.91891892                           \\ \hline
+\textbf{4}                  & 5          & 3          & 2          & 0          & 1          & 1.0000000                            \\ \hline
+\textbf{5}                  & 10         & 0          & 3          & 0          & 1          & 0.92857143                           \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\caption{Wyniki dla atrybutu \textbf{Dalc} dla naiwnego klasyfikatora bayesowskiego przy zastosowaniu wygładzenia Laplace'a}
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multirow{}{}{\textbf{X}} & \multicolumn{5}{c|}{\textbf{Y}}                                & \multirow{}{}{\textbf{błąd klasy}} \\ \cline{2-6}
+                            & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                      \\ \hline
+\textbf{1}                  & 343        & 14         & 5          & 0          & 2          & 0.05769231                           \\ \hline
+\textbf{2}                  & 68         & 19         & 6          & 0          & 0          & 0.79569892                           \\ \hline
+\textbf{3}                  & 22         & 10         & 3          & 0          & 2          & 0.91891892                           \\ \hline
+\textbf{4}                  & 5          & 3          & 2          & 0          & 1          & 1.0000000                            \\ \hline
+\textbf{5}                  & 10         & 0          & 3          & 0          & 1          & 0.92857143                           \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[h]
+\caption{Wyniki dla atrybutu \textbf{Walc} dla naiwnego klasyfikatora bayesowskiego}
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multirow{}{}{\textbf{X}} & \multicolumn{5}{c|}{\textbf{Y}}                                & \multirow{}{}{\textbf{błąd klasy}} \\ \cline{2-6}
+                            & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                      \\ \hline
+\textbf{1}                  & 343        & 14         & 5          & 0          & 2          & 0.05769231                           \\ \hline
+\textbf{2}                  & 68         & 19         & 6          & 0          & 0          & 0.79569892                           \\ \hline
+\textbf{3}                  & 22         & 10         & 3          & 0          & 2          & 0.91891892                           \\ \hline
+\textbf{4}                  & 5          & 3          & 2          & 0          & 1          & 1.0000000                            \\ \hline
+\textbf{5}                  & 10         & 0          & 3          & 0          & 1          & 0.92857143                           \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\caption{Wyniki dla atrybutu \textbf{Walc} dla naiwnego klasyfikatora bayesowskiego przy zastosowaniu wygładzenia Laplace'a}
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multirow{}{}{\textbf{X}} & \multicolumn{5}{c|}{\textbf{Y}}                                & \multirow{}{}{\textbf{błąd klasy}} \\ \cline{2-6}
+                            & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                      \\ \hline
+\textbf{1}                  & 343        & 14         & 5          & 0          & 2          & 0.05769231                           \\ \hline
+\textbf{2}                  & 68         & 19         & 6          & 0          & 0          & 0.79569892                           \\ \hline
+\textbf{3}                  & 22         & 10         & 3          & 0          & 2          & 0.91891892                           \\ \hline
+\textbf{4}                  & 5          & 3          & 2          & 0          & 1          & 1.0000000                            \\ \hline
+\textbf{5}                  & 10         & 0          & 3          & 0          & 1          & 0.92857143                           \\ \hline
+\end{tabular}
+\end{table}

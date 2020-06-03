@@ -35,7 +35,8 @@ Na podstawie przeprowadzonych badań dla spożywania alkoholu w tygodniu okazuje
 
 
  OOB estimate of  error rate: 29.62\%
-%  tabela
+ 
+
  Confusion matrix:
  
    1  2 3 4 5   class.error
@@ -50,6 +51,18 @@ Na podstawie przeprowadzonych badań dla spożywania alkoholu w tygodniu okazuje
  
  
  5  10  0 3 0 1  0.92857143
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multirow{}{}{\textbf{X (Wartość prawdziwa)}} & \multicolumn{5}{c|}{\textbf{Y (Predykcja)}}                                & \multirow{}{}{\textbf{błąd klasy}} \\ \cline{2-6}
+                            & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                      \\ \hline
+\textbf{1}                  & 343        & 14         & 5          & 0          & 2          & 0.05769231                           \\ \hline
+\textbf{2}                  & 68         & 19         & 6          & 0          & 0          & 0.79569892                           \\ \hline
+\textbf{3}                  & 22         & 10         & 3          & 0          & 2          & 0.91891892                           \\ \hline
+\textbf{4}                  & 5          & 3          & 2          & 0          & 1          & 1.0000000                            \\ \hline
+\textbf{5}                  & 10         & 0          & 3          & 0          & 1          & 0.92857143                           \\ \hline
+\end{tabular}
+\end{table}
 
 Łączna wartość błędu out-of-bag to 29.62\%, co oznacza że dokładnie 70.38\% próbek zostało poprawnie sklasyfikowanych. 
 
@@ -82,7 +95,18 @@ Confusion matrix:
  4  25  9 21 22 1  0.71794872
  
  5   7  3  5  8 8  0.74193548
- 
+ \begin{table}[h!]
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multirow{}{}{\textbf{Wartość  prawdziwa}} & \multicolumn{5}{c|}{\textbf{ Predykcja}}                                & \multirow{}{}{\textbf{błąd klasy}} \\ \cline{2-6}
+                            & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                      \\ \hline
+\textbf{1}                  & 179        & 7          & 7          & 0          & 1          & 0.07731959                           \\ \hline
+\textbf{2}                  & 88         & 13         & 15         & 7          & 0          & 0.894303984                          \\ \hline
+\textbf{3}                  & 50         & 18         & 12         & 22         & 1          & 0.88439515                           \\ \hline
+\textbf{4}                  & 25         & 9          & 21         & 22         & 1          & 0.71794872                           \\ \hline
+\textbf{5}                  & 7          & 3          & 5          & 8          & 8          & 0.74193548                           \\ \hline
+\end{tabular}
+\end{table}
 Łączna wartość błędu out-of-bag to 55.77\%, co oznacza że dokładnie 44.23\% próbek zostało poprawnie sklasyfikowanych. 
 
 \todo{przepuścic to jeszcze bez ntree = 1 ? żeby wykres byl bardziej czytelny??.}

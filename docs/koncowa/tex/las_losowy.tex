@@ -3,21 +3,13 @@ Błąd klasyfikacji może być szacowany na podstawie obiektów nie włączonych
 
 Implementacja algorytmu lasu losowego została wykorzystana przez pakiet RandomForest. Przy pierwotnym budowaniu lasu losowego wzięto pod uwagę trzy parametry takie jak:
 \begin{itemize}
-    \item ilość drzew (mtry = {1, 10,50,100,300,500})
+    \item ilość drzew (ntree = {1, 10,50,100,300,500})
     \item głębokość pojedyńczego drzewa (maxnodes = {3,10,20,50})
     \item ilość atrybutów rozpatrywana przy tworzeniu węzła (mtry = {1,2,3,4,5,6,7,8,9,10})
     \item losowanie próbek do modelu ze zwracaniem i bez (replace = {TRUE/FALSE})
 \end{itemize}
 Do zbadania 240 modelów z wymienionymi parametrami użyto funkcji train. 
-
-
-% Dalc - spożywanie w tygodniu
-% Walc - spożywanie w weekend
-
-
-
 Funkcja train zwraca dwie ważne wartości: dokładność modelu(Accuracy) oraz współczynnik Kappa(Kappa). Dokładność modelu to nic innego jak ilość poprawnie predykowanych próbek do ilości wszystkich badanych próbek. Współczynnik Kappa parametr, który zawiera informacje o odtwarzalności lub powtarzalności pomiaru zmniennej w różnych warunkach. 
-
 
 Uzyskane wyniki są przedstawione na wykresach
 
@@ -33,24 +25,6 @@ Uzyskane wyniki są przedstawione na wykresach
 
 Na podstawie przeprowadzonych badań dla spożywania alkoholu w tygodniu okazuje się model zbudowany z 10 drzew oraz 7 atrybutów wykorzystywanych do  budowania podziału, maksymalnie 50 węzłów w drzewie oraz wykorzystywania losowania ze zwracaniem.
 
-
- OOB estimate of  error rate: 29.62\%
- 
-
- Confusion matrix:
- 
-   1  2 3 4 5   class.error
-   
- 1 343 14 5 0 2  0.05769231
- 
- 2  68 19 6 0 0  0.79569892
- 
- 3  22 10 3 0 2  0.91891892
- 
- 4   5  3 2 0 2  1.00000000
- 
- 
- 5  10  0 3 0 1  0.92857143
 \begin{table}[h]
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -82,26 +56,13 @@ Na podstawie przeprowadzonych badań dla spożywania alkoholu w weekend okazuje 
 % tabela
  OOB estimate of  error rate: 55.77\%
  
-Confusion matrix:
-
-   1  2  3  4 5 class.error
-   
- 1 179  7  7  0 1  0.07731959
- 
- 2  88 13 15  7 0  0.89430894
- 
- 3  50 18 12 22 1  0.88349515
- 
- 4  25  9 21 22 1  0.71794872
- 
- 5   7  3  5  8 8  0.74193548
  \begin{table}[h!]
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 \multirow{}{}{\textbf{Wartość  prawdziwa}} & \multicolumn{5}{c|}{\textbf{ Predykcja}}                                & \multirow{}{}{\textbf{błąd klasy}} \\ \cline{2-6}
                             & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                      \\ \hline
 \textbf{1}                  & 179        & 7          & 7          & 0          & 1          & 0.07731959                           \\ \hline
-\textbf{2}                  & 88         & 13         & 15         & 7          & 0          & 0.894303984                          \\ \hline
+\textbf{2}                  & 88         & 13         & 15         & 7          & 0          & 0.89430398                          \\ \hline
 \textbf{3}                  & 50         & 18         & 12         & 22         & 1          & 0.88439515                           \\ \hline
 \textbf{4}                  & 25         & 9          & 21         & 22         & 1          & 0.71794872                           \\ \hline
 \textbf{5}                  & 7          & 3          & 5          & 8          & 8          & 0.74193548                           \\ \hline
@@ -109,14 +70,50 @@ Confusion matrix:
 \end{table}
 Łączna wartość błędu out-of-bag to 55.77\%, co oznacza że dokładnie 44.23\% próbek zostało poprawnie sklasyfikowanych. 
 
-\todo{przepuścic to jeszcze bez ntree = 1 ? żeby wykres byl bardziej czytelny??.}
+W celu całkowitego wyczerpania tematu - sprawdzono jak wygląda predykcja modelu przy zachowaniu 2 stałych parametrów i 1 zmiennego. Dwa ustalone parametry były dobierane na podstawie wcześniejszych eksperymentów. Liczba drzew była ustalona na 100, tak aby wariancja nie zawyżała wyników skuteczności. W celu uzyskania wykresów pudełkowych iteracja algorytmów to 30. 
 
+\begin{figure}[h]
+     \centering 
+     \includegraphics[scale=0.60]{tex/boxplot_walc_maxnodes.png}
+     \label{fig:classes}
+\end{figure}
 
-Podsumowując, 
+\begin{figure}[h]
+     \centering 
+     \includegraphics[scale=0.60]{tex/boxplot_walc_mtry.png}
+     \label{fig:classes}
+\end{figure}
+
+\begin{figure}[h]
+     \centering 
+     \includegraphics[scale=0.60]{tex/boxplot_walc_ntree.png}
+     \label{fig:classes}
+\end{figure}
+
+Na podstawie zgromadzonych wykresów na detekcję spożywania alkoholu w weekend nie ma wpływu liczba drzew. Ponieważ na wykresie skuteczność utrzymuje się na stałym poziomie dla liczby drzew od 30 do 500. Analogiczną sytuację obserwujemy dla liczby podziałów w drzewie, skuteczność nie zmienia się znacząco.
+O skuteczności lasu losowego w predykcji spożywania alkoholu w weekend ma znaczący wpływ liczba atrybutów biorąca udział w losowaniu. 
+
 
 % -waga klas (classwt)
 % -losowanie ze zwracaniem (replace)
+% Dalc - spożywanie w tygodniu
+% Walc - spożywanie w weekend
+\begin{figure}[h]
+     \centering 
+     \includegraphics[scale=0.60]{tex/boxplot_dalc_maxnodes_v2.png}
+     \label{fig:classes}
+\end{figure}
 
+\begin{figure}[h]
+     \centering 
+     \includegraphics[scale=0.60]{tex/boxplot_dalc_mtry_v2.png}
+     \label{fig:classes}
+\end{figure}
 
-\todo{jeszcze wagi to do .}
+\begin{figure}[h]
+     \centering 
+     \includegraphics[scale=0.60]{tex/boxplot_dalc_ntree.png}
+     \label{fig:classes}
+\end{figure}
 
+Na podstawie zgromadzonych wykresów na detekcję spożywania alkoholu w tygodniu nie ma wpływu liczba drzew. Parametry zachowują się analogicznie do spożywania alkoholu w weekend. Skuteczność detekcji jest wyższa, oscyluje wokół 71\%, natomiast w drugim przypadku skuteczność to około 48\%. Wynika to z proporcji ilości próbek w klasach. 

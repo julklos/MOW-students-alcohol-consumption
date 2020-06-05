@@ -1,4 +1,8 @@
 #biblioteka do bayesa
+if (! "tidyverse" %in% row.names(installed.packages()))
+  install.packages("tidyverse")
+if (! "dplyr" %in% row.names(installed.packages()))
+  install.packages("dplyr")
 if (! "e1071" %in% row.names(installed.packages()))
   install.packages("e1071")
 if (! "randomForest" %in% row.names(installed.packages()))  
@@ -14,7 +18,7 @@ library(tidyr)
 library(caret)
 err <- function(y.true, y.pred) { sum(y.pred!=y.true)/length(y.true) }
 
-students<- read.csv("./data/students.csv",header=TRUE)
+students<- read.csv("students.csv",header=TRUE)
 students$X <- NULL
 students$Walc <- as.factor(students$Walc)
 students$Dalc <- as.factor(students$Dalc)
@@ -28,8 +32,8 @@ for (i in 1:iter) {
   test  <- students[-sample, ]
   train_D <- select(train, -Dalc)
   test_D <- select(test, -Dalc)
-   #train_D <- subset(train, select = -c(Walc, Dalc))
-   #test_D <- subset(test, select = -c(Walc, Dalc))
+  #train_D <- subset(train, select = -c(Walc, Dalc))
+  #test_D <- subset(test, select = -c(Walc, Dalc))
   train_labels <- students[sample,]$Dalc
   test_labels <- students[-sample,]$Dalc
   
@@ -49,7 +53,7 @@ for (i in 1:iter) {
   ##porównanie z laplacem
   nam <- paste("D_laplace_confussion_matrix_bayes_test_", i, sep = "")
   assign(nam, confusionMatrix(predict(model_laplace, test_D), test_labels ))
-         
+  
 }
 ##uśrednić te statystyki..?
 
@@ -99,7 +103,7 @@ predc <- function(...) { predict(..., type="c") }
 
 # 10-krotna walidacja krzyżowa na zbiorze trenującym
 # przy domyślnych parametrach
-          
+
 cv100_Dalc <- tune(naiveBayes, Dalc ~ ., data=train,
                    predict.func=predc, metric = "Accuracy",
                    tunecontrol=tune.control(sampling="cross", cross=10))
@@ -117,14 +121,14 @@ err(test$Dalc, predict(cv100_Dalc$best.model, test, type="c"))
 
 ## laplace
 cv100_Dalc_l <- tune(naiveBayes, Dalc ~ ., data=train,
-                   predict.func=predc, metric = "Accuracy", laplace = 100,
-                   tunecontrol=tune.control(sampling="cross", cross=10))
+                     predict.func=predc, metric = "Accuracy", laplace = 1,
+                     tunecontrol=tune.control(sampling="cross", cross=10))
 # sprawdźmy błąd uzyskany dla walidacji krzyżowej 0.3290276
 cv100_Dalc_l 
 
 cv100_Dalc_l$best.model
-bestModel_Dalc_l <- confusionMatrix( predict(cv100_Dalc$best.model, test),test_labels)
-bestModel_Dalc_l_train <- confusionMatrix( predict(cv100_Dalc$best.model, train),train_labels)
+bestModel_Dalc_l <- confusionMatrix( predict(cv100_Dalc_l$best.model, test),test_labels)
+bestModel_Dalc_l_train <- confusionMatrix( predict(cv100_Dalc_l$best.model, train),train_labels)
 bestModel_Dalc_l_train
 
 err(test$Dalc, predict(cv100_Dalc_l$best.model, test, type="c")) # 0.3157895
@@ -143,8 +147,8 @@ bestModel_Walc_train
 err(test$Walc, predict(cv100_Walc$best.model, test, type="c")) # 0.556391
 
 # weekend laplace
-cv100_Walc_l <- tune(naiveBayes, Walc ~ ., data = train, laplace = 100,
-                   predict.func = predc, tunecontrol = tune.control(sampling = "cross", cross = 10))
+cv100_Walc_l <- tune(naiveBayes, Walc ~ ., data = train, laplace = 1,
+                     predict.func = predc, tunecontrol = tune.control(sampling = "cross", cross = 10))
 cv100_Walc_l$best.model #0.5917634
 cv100_Walc_l 
 

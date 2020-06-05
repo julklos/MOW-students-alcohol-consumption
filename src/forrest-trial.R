@@ -10,7 +10,7 @@ library(tidyr)
 library(caret)
 
 
-students<- read.csv("../data/students.csv",header=TRUE)
+students<- read.csv("students.csv",header=TRUE)
 students$X <- NULL
 
 students$Walc = as.factor(students$Walc)

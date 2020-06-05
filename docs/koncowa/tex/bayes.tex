@@ -1,4 +1,3 @@
-\todo{blablabla.}
 
 Naiwny klasyfikator bayesowski jest modelem probabilistycznym opartym na klasycznym twierdzeniu Bayesa. Opisuje ono relację pomiędzy prawdopodobieństwem warunkowym pewnego zdarzenia oraz jego prawdopodobieństwem bezwarunkowym:
 \begin{equation}
@@ -7,8 +6,7 @@ Naiwny klasyfikator bayesowski jest modelem probabilistycznym opartym na klasycz
 \end{equation}
 
 %  TO NIE CHCE DZIALAĆ -.-
-% Wykorzystując wzór (\ref{eq:bayes}), można znaleźć prawdopodobieństwo zdarzenia \mathbf{A}, zakładając, że zdarzenie \mathbf{B} wystąpiło. Zdarzenie \mathbf{B} można potraktować jako dowód, a zdarzenie \mathbf{A} jako hipotezę.
-
+Wykorzystując wzór (\ref{eq:bayes}), można znaleźć prawdopodobieństwo zdarzenia $A$, zakładając, że zdarzenie $B$ wystąpiło. Zdarzenie $B$ można potraktować jako dowód, a zdarzenie $A$ jako hipotezę.
 
 Implementacja algorytmu klasyfikatora bayesowskiego została wykorzystana przez pakiet e1071. Przy pierwotnym budowaniu modelu wykorzystano funkcję tune do przybliżenia jak najlepszych parametrów modelowi. Następnie przestestowano hipotezę, która miała na celu sprawdzenie wpływu wygładzenia Laplace'a.
 
@@ -17,56 +15,60 @@ Implementacja algorytmu klasyfikatora bayesowskiego została wykorzystana przez 
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-\multirow{}{}{\textbf{\begin{tabular}[c]{@{}c@{}}Klasa\\ prawdziwa\end{tabular}}} & \multicolumn{5}{c|}{\textbf{Predykcja}}                        & \multirow{}{}{\textbf{Accuracy}} \\ \cline{2-6}
-                                                                                    & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                    \\ \hline
-\textbf{1}                                                                          & 343        & 14         & 5          & 0          & 2          & 0.05769231                         \\ \hline
-\textbf{2}                                                                          & 68         & 19         & 6          & 0          & 0          & 0.79569892                         \\ \hline
-\textbf{3}                                                                          & 22         & 10         & 3          & 0          & 2          & 0.91891892                         \\ \hline
-\textbf{4}                                                                          & 5          & 3          & 2          & 0          & 1          & 1.0000000                          \\ \hline
-\textbf{5}                                                                          & 10         & 0          & 3          & 0          & 1          & 0.92857143                         \\ \hline
+\multirow{}{}{\textbf{\begin{tabular}[c]{@{}c@{}}klasa\\ prawdziwa\end{tabular}}} & \multicolumn{5}{c|}{\textbf{predykcja}}                        & \multirow{}{}{\textbf{błąd klasy [\%]}} \\ \cline{2-6}  & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                    \\ \hline
+\textbf{1}  &  307  &50  & 8 &  3 &  1      & 16,8                      \\ \hline
+\textbf{2}  & 38 &  41 &  5  & 4 &  0       & 53,4                        \\ \hline
+\textbf{3}  &  8 & 10 & 23&   2&   0      & 46,51                         \\ \hline
+\textbf{4}  & 2 &  4  & 2  & 7 &  2 & 58,82                       \\ \hline
+\textbf{5}  &  3 &  0 &  0 &  0 &   9   & 25,00                   \\ \hline
 \end{tabular}
 \end{table}
-
+\FloatBarrier
 \begin{table}[h]
 \caption{Wyniki dla atrybutu \textbf{Dalc} dla naiwnego klasyfikatora bayesowskiego przy zastosowaniu wygładzenia Laplace'a}
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-\multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Klasa\\ prawdziwa\end{tabular}}} & \multicolumn{5}{c|}{\textbf{Predykcja}}                        & \multirow{}{}{\textbf{Accuracy}} \\ \cline{2-6}
-                                                                                    & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                    \\ \hline
-\textbf{1}                                                                          & 343        & 14         & 5          & 0          & 2          & 0.05769231                         \\ \hline
-\textbf{2}                                                                          & 68         & 19         & 6          & 0          & 0          & 0.79569892                         \\ \hline
-\textbf{3}                                                                          & 22         & 10         & 3          & 0          & 2          & 0.91891892                         \\ \hline
-\textbf{4}                                                                          & 5          & 3          & 2          & 0          & 1          & 1.0000000                          \\ \hline
-\textbf{5}                                                                          & 10         & 0          & 3          & 0          & 1          & 0.92857143                         \\ \hline
+\multirow{}{}{\textbf{\begin{tabular}[c]{@{}c@{}}klasa\\ prawdziwa\end{tabular}}} & \multicolumn{5}{c|}{\textbf{predykcja}}                        & \multirow{}{}{\textbf{błąd klasy [\%]}} \\ \cline{2-6}  & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                    \\ \hline
+\textbf{1}  & 286 &  39  & 5 &  1 &  1       & 13,86                \\ \hline
+\textbf{2}  & 29 & 29  & 3 &  2 &  0        & 53,97                      \\ \hline
+\textbf{3}  &  11 &  10 &  18  & 2 &  0     & 56,1                         \\ \hline
+\textbf{4}  & 16 & 18 &  7 & 11 &  2 & 79,63                      \\ \hline
+\textbf{5}  &16   &9  & 5 &  0 &  9   & 76,93                     \\ \hline
 \end{tabular}
 \end{table}
+\FloatBarrier Całkowity błąd naiwnego klasyfikatora Bayesa dla atrybutu \textbf{Dalc} wynosi 35,93\% (dla zbioru testowego: 22,56\%), natomiast przy użyciu wygładzenia Laplace'a  41,39\% (dla zbioru testowego 30,0\%).  W tym przypadku wygładzenie Laplace'a znacząco pogarsza klasyfikację klas, które nie są licznie reprezentowane. Całkowita wartość błędu tego algorytmu jest porównywalna z wartością lasu losowego (tab. \ref{tab:best_Dalc_forest}), jednak rozkład błędów dla poszczególnych klas wypada na korzyść prostszego modelu- naiwnego Bayesa.
+
+\FloatBarrier
+
+
 \begin{table}[h]
-\caption{Wyniki dla atrybutu \textbf{Walc} dla naiwnego klasyfikatora bayesowskiego}
+\caption{Wyniki dla atrybutu \textbf{Walc} dla naiwnego klasyfikatora bayesowskiego }
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-\multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Klasa\\ prawdziwa\end{tabular}}} & \multicolumn{5}{c|}{\textbf{Predykcja}}                        & \multirow{}{}{\textbf{Accuracy}} \\ \cline{2-6}
-                                                                                    & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                    \\ \hline
-\textbf{1}                                                                          & 343        & 14         & 5          & 0          & 2          & 0.05769231                         \\ \hline
-\textbf{2}                                                                          & 68         & 19         & 6          & 0          & 0          & 0.79569892                         \\ \hline
-\textbf{3}                                                                          & 22         & 10         & 3          & 0          & 2          & 0.91891892                         \\ \hline
-\textbf{4}                                                                          & 5          & 3          & 2          & 0          & 1          & 1.0000000                          \\ \hline
-\textbf{5}                                                                          & 10         & 0          & 3          & 0          & 1          & 0.92857143                         \\ \hline
+\multirow{}{}{\textbf{\begin{tabular}[c]{@{}c@{}}Klasa\\ prawdziwa\end{tabular}}} & \multicolumn{5}{c|}{\textbf{Predykcja}}                        & \multirow{}{}{\textbf{błąd klasy [\%]}} \\ \cline{2-6}  & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                    \\ \hline
+\textbf{1}  & 150 & 41 & 25 & 10  & 1       &  33,92         \\ \hline
+\textbf{2}  & 29 & 49 & 27&  11&   3       & 58,82                        \\ \hline
+\textbf{3}  &  15 & 13  &24 &  9 &  1      &  61,29                      \\ \hline
+\textbf{4}  &   3 & 11 & 22 & 37 &  9 &54,88                   \\ \hline
+\textbf{5}  & 1 &  2  & 6 &  8&  22   & 43,59                    \\ \hline
 \end{tabular}
 \end{table}
 
+\FloatBarrier
 \begin{table}[h]
-\caption{Wyniki dla atrybutu \textbf{Walc} dla naiwnego klasyfikatora bayesowskiego przy zastosowaniu wygładzenia Laplace'a}
+\caption{Wyniki dla atrybutu \textbf{Walc} dla naiwnego klasyfikatora bayesowskiego przy zastosowaniu wygładzenia Laplace'a 62,39}
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-\multirow{}{}{\textbf{\begin{tabular}[c]{@{}c@{}}Klasa\\ prawdziwa\end{tabular}}} & \multicolumn{5}{c|}{\textbf{Predykcja}}                        & \multirow{}{}{\textbf{Accuracy}} \\ \cline{2-6}
-                                                                                    & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                    \\ \hline
-\textbf{1}                                                                          & 343        & 14         & 5          & 0          & 2          & 0.05769231                         \\ \hline
-\textbf{2}                                                                          & 68         & 19         & 6          & 0          & 0          & 0.79569892                         \\ \hline
-\textbf{3}                                                                          & 22         & 10         & 3          & 0          & 2          & 0.91891892                         \\ \hline
-\textbf{4}                                                                          & 5          & 3          & 2          & 0          & 1          & 1.0000000                          \\ \hline
-\textbf{5}                                                                          & 10         & 0          & 3          & 0          & 1          & 0.92857143                         \\ \hline
+\multirow{}{}{\textbf{\begin{tabular}[c]{@{}c@{}}klasa\\ prawdziwa\end{tabular}}} & \multicolumn{5}{c|}{\textbf{predykcja}}                        & \multirow{}{}{\textbf{błąd klasy [\%]}} \\ \cline{2-6}  & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &                                    \\ \hline
+\textbf{1}  & 140 & 33 &  21 &  5 &  2        &  33,33                           \\ \hline
+\textbf{2}  & 35 & 56  &30&  11 &  2        & 58,22                        \\ \hline
+\textbf{3}  &  14  &13  &25 &  9 &  0       &  59,02                      \\ \hline
+\textbf{4}  &  7 & 12&  21 & 41  & 8 & 53,94                      \\ \hline
+\textbf{5}  &   2 &  2  & 7 &  9 & 24   & 45,46                    \\ \hline
 \end{tabular}
 \end{table}
+Dla atrybutu \textbf{Walc} całkowity błąd wyniósł 58,03\% (dla zbioru testowego 57,31\%), a przy zastosowaniu wygładzenia Laplace'a 62,39\% (zbiór testowy 57,89\%). W tym przypadku nie zauważono znaczącego wpływu wykorzystania wygładzenia. Ponownie błąd tego typu modelu jest porównywalny z lasem losowym, ale również rozkład błędów w zależności od klasy jest korzystniejszy dla naiwnego Bayesa. Ten algorytm lepiej radzi sobie z nierównomiernym rozkładem klas, podczas gdy las losowy wykorzystujący głosowanie większościowe preferuje klasy silniej reprezentowane.
+\FloatBarrier

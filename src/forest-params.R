@@ -19,13 +19,6 @@ train <- students[sample, ]
 test  <- students[-sample, ]
 
 
-##dobór najlepszego modelu
-
-##Mona dobrać dzięki temu 3 parametry. Uwaga, dosyć długo się liczy.
-##sugerowałabym mtry=9-11, maxnodes >=50), ntrees = 100-300, dla 500 liczy się lepiej, ale wydłuża proces, a charekterystykę widać już przy 300.
-
-
-
 seed <- 7
 metric <- "Accuracy"
 set.seed(seed)
@@ -49,32 +42,89 @@ customRF$levels <- function(x) x$classes
 control <- trainControl(## 10-fold CV
   method = "cv",
   number = 10)
-#control <- trainControl(method="repeatedcv", number=10, repeats=3)
-tunegrid <- expand.grid(mtry=c(1:10), ntree=c(10,50,100,300,500), maxnodes=c(3,10,20,50, 100, 300))
-set.seed(seed)
-custom <- train(Dalc~., data=train, method=customRF, metric=metric, tuneGrid=tunegrid, trControl=control)
-summary(custom)
-plot(custom)
-custom$bestTune
- #     mtry ntree maxnodes
-#221    8    50      100
 
-# train model
-custom_W <- train(Walc~., data=train, method=customRF, metric=metric, tuneGrid=tunegrid, trControl=control)
-summary(custom_W)
-plot(custom_W)
+############################################# DALC
+#mtry ntree maxnodes replace
+#248    7    10       50    TRUE
+tunegrid <- expand.grid(mtry=c(7), ntree=c(100), maxnodes=c(2,3,5,10,15,20,50,75, 100, 150))
+#tunegrid <- expand.grid(mtry=c(7), ntree=c(1,10,30,100,300,500), maxnodes=c(10))
+#tunegrid <- expand.grid(mtry=c(1:9), ntree=c(200), maxnodes=c(40))
 
-
-############### replace 
-
-rf_Dalc = randomForest(Dalc~., data=train, replace = ,mtry = ,  ntree=  , maxnodes = )
+iter = 50 #liczba uruchomien algorytmu
+LIST=list()
+for(i in 1:iter){
   
-prediction <-predict(rf_Dalc, test)
-confusionMatrix(prediction, test$Dalc)
+  sample <- sample.int(n = nrow(students), size = floor(.8*nrow(students)), replace = F)
+  train <- students[sample, ]
+  test  <- students[-sample, ]
+  custom_D <- train(Walc~., data=train, method=customRF, metric=metric, tuneGrid=tunegrid, trControl=control)
+  
+  LIST[[i]] <- list(select(custom_D$results, c('mtry','ntree','maxnodes','Accuracy') ) ) 
+  
+  
+}
+# prepocess data
+temp = lapply(LIST, as.data.frame)
+output = bind_rows(temp)
 
 
+boxplot( Accuracy~maxnodes, 
+         data=output,
+         horizontal = FALSE
+)
 
 
+############################################# WALC
+#     mtry ntree maxnodes replace
+# 335    9    50       50   FALSE   
+
+#tunegrid <- expand.grid(mtry=c(9), ntree=c(100), maxnodes=c(3,10,20,50, 100, 150))
+#tunegrid <- expand.grid(mtry=c(9), ntree=c(1,10,30,100,300,500), maxnodes=c(50))
+tunegrid <- expand.grid(mtry=c(1:20), ntree=c(100), maxnodes=c(50))
+iter = 50 #liczba uruchomien algorytmu
+LIST=list()
+for(i in 1:iter){
+  
+  sample <- sample.int(n = nrow(students), size = floor(.8*nrow(students)), replace = F)
+  train <- students[sample, ]
+  test  <- students[-sample, ]
+  custom_D <- train(Dalc~., data=train, method=customRF, metric=metric, tuneGrid=tunegrid, trControl=control)
+  
+  LIST[[i]] <- list(select(custom_D$results, c('mtry','ntree','maxnodes','Accuracy') ) ) 
+  
+  
+}
+# prepocess data
+temp = lapply(LIST, as.data.frame)
+output = bind_rows(temp)
 
 
+boxplot( Accuracy~mtry, 
+         data=output,
+         horizontal = FALSE
+)
+
+tunegrid <- expand.grid(mtry=c(7), ntree=c(1,2,5,10, 50, 75,100,200,300,500), maxnodes=c(50))
+iter = 50 #liczba uruchomien algorytmu
+LIST=list()
+for(i in 1:iter){
+  
+  sample <- sample.int(n = nrow(students), size = floor(.8*nrow(students)), replace = F)
+  train <- students[sample, ]
+  test  <- students[-sample, ]
+  custom_D <- train(Dalc~., data=train, method=customRF, metric=metric, tuneGrid=tunegrid, trControl=control)
+  
+  LIST[[i]] <- list(select(custom_D$results, c('mtry','ntree','maxnodes','Accuracy') ) ) 
+  
+  
+}
+# prepocess data
+temp = lapply(LIST, as.data.frame)
+output = bind_rows(temp)
+
+
+boxplot( Accuracy~ntree, 
+         data=output,
+         horizontal = FALSE
+)
 
